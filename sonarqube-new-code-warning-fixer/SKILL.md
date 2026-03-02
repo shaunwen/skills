@@ -72,24 +72,15 @@ Use this order:
 ## Resources
 
 - changed-file scope helper: `scripts/list_newly_updated_files.py`
-- shareable bundle generator: `scripts/package_skill_bundle.py`
 - Sonar query patterns and caveats: `references/sonarqube-mcp-patterns.md`
 
 ## Sharing
 
-Create a shareable bundle from inside the skill directory:
+Install this skill from a skills repository:
 
 ```bash
-python3 scripts/package_skill_bundle.py
+npx skills add <repo-url-or-path> --skill sonarqube-new-code-warning-fixer
 ```
-
-This generates:
-- `<skill-name>.skill`
-- only this single artifact
-
-Install on another machine:
-- place `<skill-name>.skill` in `$CODEX_HOME/skills`.
-- if your Codex version does not detect `.skill` directly, unpack it as a zip archive into `$CODEX_HOME/skills`.
 
 ## Guardrails
 

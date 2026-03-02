@@ -1,0 +1,4 @@
+interface:
+  display_name: "SonarQube Warning Fixer"
+  short_description: "Analyze new-code warnings and fix issues with tests"
+  default_prompt: "Use SonarQube MCP to analyze newly updated code, list warnings, fix them all, and fix broken tests."

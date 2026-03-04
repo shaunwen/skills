@@ -1,13 +1,19 @@
 ---
 name: sonarqube-new-code-warning-fixer
-description: Analyze newly updated code with SonarQube MCP, list warnings, fix all warnings, and fix broken tests. Use when asked to scan changed files from uncommitted work or branch diffs against develop/master/main, then remediate issues end-to-end.
+description: >
+  Analyze newly updated code with SonarQube MCP, list warnings,
+  fix all warnings, and fix broken tests. Use when asked to scan changed
+  files from uncommitted work or branch diffs against
+  develop/master/main, then remediate issues end-to-end.
 ---
 
 # SonarQube New Code Warning Fixer
 
 ## Overview
 
-Use SonarQube MCP to inspect only newly updated code, report warnings in a clear list, fix them, and finish with passing tests. Scope selection supports uncommitted changes and branch diffs.
+Use SonarQube MCP to inspect only newly updated code, report warnings
+in a clear list, fix them, and finish with passing tests.
+Scope selection supports uncommitted changes and branch diffs.
 
 ## Workflow
 
@@ -87,4 +93,6 @@ npx skills add <repo-url-or-path> --skill sonarqube-new-code-warning-fixer
 - keep analysis scoped to newly updated code unless user asks for full-project scan.
 - never hide unresolved warnings: list them explicitly.
 - do not claim tests passed unless tests were actually run in this environment.
-- if Sonar returns no results but warnings are expected, verify project key, file key format, and qualifier grouping before concluding.
+- if Sonar returns no results but warnings are expected,
+  verify project key, file key format, and qualifier grouping
+  before concluding.

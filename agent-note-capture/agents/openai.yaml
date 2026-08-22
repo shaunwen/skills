@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Note Capture"
+  short_description: "Create concise notes from agent context"
+  default_prompt: "Use $agent-note-capture to turn the current agent context into a concise note in my configured notes folder."

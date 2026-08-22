@@ -21,7 +21,12 @@ npx skills add https://github.com/shaunwen/skills --skill sonarqube-new-code-war
 
 | Skill | Description |
 |-------|-------------|
+| [agent-note-capture](agent-note-capture/SKILL.md) | Capture durable markdown notes from active agent work into a configured notes folder, matching local conventions. |
+| [distill-daily](distill-daily/SKILL.md) | Distill captured daily notes into atomic zettelkasten notes and produce weekly/monthly review summaries. |
+| [notes-system-review](notes-system-review/SKILL.md) | Audit a notes vault (structure, links, staleness, secrets) and propose a plan-first set of improvements. |
 | [sonarqube-new-code-warning-fixer](sonarqube-new-code-warning-fixer/SKILL.md) | Analyze newly updated code with SonarQube MCP, list warnings, fix all warnings, and fix broken tests. |
+
+The three notes skills resolve their target notes folder from the `NOTES_DIR` env var (falling back to `ZK_NOTEBOOK_DIR`) and assume a zk/Obsidian-style markdown vault.
 
 ## Skill Prerequisites
 

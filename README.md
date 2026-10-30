@@ -25,6 +25,7 @@ npx skills add https://github.com/shaunwen/skills --skill sonarqube-new-code-war
 | [book-file-naming](book-file-naming/SKILL.md) | Clean up ebook and document file names into short lowercase-hyphenated titles, as a text-only rename or a reviewed bulk rename of a library folder. |
 | [distill-daily](distill-daily/SKILL.md) | Distill captured daily notes into atomic zettelkasten notes, merge a week's daily notes, produce weekly/monthly review summaries, and make a backup commit. |
 | [learn-and-note](learn-and-note/SKILL.md) | Turn a YouTube video, article, PDF, local file or the current conversation into a zettelkasten note matching the vault's conventions, with an optional visual HTML page. |
+| [mnemonic-story-image](mnemonic-story-image/SKILL.md) | Turn a word list into a vivid mnemonic story and an image-model prompt that renders each word as legible text in the scene, validated by a checker script. |
 | [notes-system-review](notes-system-review/SKILL.md) | Audit a notes vault (structure, links, staleness, secrets) and propose a plan-first set of improvements. |
 | [sonarqube-new-code-warning-fixer](sonarqube-new-code-warning-fixer/SKILL.md) | Analyze newly updated code with SonarQube MCP, list warnings, fix all warnings, and fix broken tests. |
 

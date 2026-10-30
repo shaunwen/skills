@@ -28,12 +28,14 @@ Range spans of 10 days or less get a weekly-style summary; longer spans get a mo
 5. Proposes the extraction plan and waits for approval.
 6. Writes seedling zettels in `zettelkasten/` following `.zk/templates/` conventions, and wires them into the relevant `moc-*` notes.
 7. Fills each source daily note's `## Extracted` section with links - this makes reruns idempotent.
-8. Writes the summary note in `reviews/` (`YYYY-MM-DD-weekly-review.md` or `YYYY-MM-monthly-review.md`) and shows the summary paragraph inline.
+8. For a weekly run, merges the week's daily notes into the latest one and deletes the rest, repointing any backlinks.
+9. Writes the summary note in `reviews/` (`YYYY-MM-DD-weekly-review.md` or `YYYY-MM-monthly-review.md`) and shows the summary paragraph inline.
+10. Commits the result as `notes backup: YYYY-MM-DD-HH:MM`, with system/config changes in a separate scoped commit. Never pushes.
 
 ## Guarantees
 
 - Never copies credentials or tokens into notes (placeholders only).
-- Never commits; run your usual notes backup afterwards.
+- Makes a backup commit before deleting any daily note that isn't committed yet, so nothing is lost if the merge goes wrong.
 - Reruns skip anything already linked from an `## Extracted` section.
 - Reminds you to run `zk index` (or `:ZkIndex` in Neovim) when done.
 

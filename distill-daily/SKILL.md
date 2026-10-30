@@ -1,6 +1,6 @@
 ---
 name: distill-daily
-description: Distill captured daily notes from the notes vault into atomic zettelkasten notes, fill each daily note's Extracted section, and produce a weekly or monthly summary review note. Use when the user invokes /distill-daily, or asks to distill/extract daily notes, run a weekly or monthly review, or turn a date range of daily notes into proper notes.
+description: Distill captured daily notes from the notes vault into atomic zettelkasten notes, fill each daily note's Extracted section, merge a week's daily notes into the latest one, produce a weekly or monthly summary review note, and make a backup commit. Use when the user invokes /distill-daily, or asks to distill/extract daily notes, run a weekly or monthly review, or turn a date range of daily notes into proper notes.
 ---
 
 # Distill Daily Notes
@@ -93,6 +93,29 @@ In each source daily note, fill (or create) the `## Extracted` section with link
 - [[slug-one]] - what was extracted
 ```
 
+## Step 6b - Merge the period's daily notes
+
+For `weekly` (or a short range), merge every daily note in the period into the latest-dated one, then delete the merged files. Skip files that are already merges. If any file about to be deleted is untracked or has uncommitted changes in git, first make a backup commit (see Step 8) so the originals stay recoverable. Before deleting, check for backlinks to the files being removed (`[[YYYY-MM-DD]]`) and repoint them to the merged note. Use this shape (if the vault already has merged daily notes, match their style):
+
+```markdown
+---
+created: <latest note's created>
+tags: [daily-notes]
+---
+
+# <latest date>
+
+Merged daily notes for <first date>..<latest date>.
+
+## Log
+
+### <date>
+<that day's log, or "(no entries)">
+
+## Extracted
+- [[slug]] - what was extracted (MM-DD)
+```
+
 ## Step 7 - Write the period summary
 
 **Weekly** (`weekly` or short range): create `reviews/YYYY-MM-DD-weekly-review.md` (date = period end) using `.zk/templates/weekly_review.md` structure and frontmatter (`type: weekly_review`, `status: seedling`, `domain: meta`, `tags: [review]`). Fill the sections from what the period actually contained: problems solved (link the zettels), question triage, notes deserving distillation/evergreen promotion, repeated patterns, system improvements. Prepend a short `## Week in summary` paragraph: 3-6 sentences on what the week was about.
@@ -121,6 +144,15 @@ In each source daily note, fill (or create) the `## Extracted` section with link
 - ...
 ```
 
-## Step 8 - Report
+## Step 8 - Backup commit
 
-Remind the user to run `zk index` (or `:ZkIndex` in Neovim). Report: notes created (with paths), notes updated, MOCs touched, daily notes whose Extracted sections were filled, and the summary note path. End with the period summary paragraph inline so the user reads it without opening the file. Do not commit unless asked.
+Commit the run in the vault on every run, unasked:
+
+1. `git status --porcelain` to see what changed.
+2. If system or config files changed (`.zk/` templates or config, Obsidian or nvim config, scripts, in-repo skills), commit them separately first as a scoped Conventional Commit (e.g. `fix(zk): ...`).
+3. Stage everything else with `git add -A`, including the deleted daily notes, and commit it as one backup commit: `git commit -m "notes backup: $(date +%Y-%m-%d-%H:%M)"`. Unrelated pending note content goes in too, because backup commits snapshot the vault. Do not split content into scoped commits.
+4. Do not push unless the user asks.
+
+## Step 9 - Report
+
+Remind the user to run `zk index` (or `:ZkIndex` in Neovim). Report: notes created (with paths), notes updated, MOCs touched, daily notes whose Extracted sections were filled, daily notes merged and deleted, the summary note path, and the backup commit hash. End with the period summary paragraph inline so the user reads it without opening the file.

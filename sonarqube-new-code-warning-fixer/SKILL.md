@@ -80,14 +80,6 @@ Use this order:
 - changed-file scope helper: `scripts/list_newly_updated_files.py`
 - Sonar query patterns and caveats: `references/sonarqube-mcp-patterns.md`
 
-## Sharing
-
-Install this skill from a skills repository:
-
-```bash
-npx skills add <repo-url-or-path> --skill sonarqube-new-code-warning-fixer
-```
-
 ## Guardrails
 
 - keep analysis scoped to newly updated code unless user asks for full-project scan.
